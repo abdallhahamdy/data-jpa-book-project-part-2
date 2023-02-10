@@ -1,0 +1,13 @@
+- Create Layers ( DAO - service - controller - Base ).
+- Fetch and load graphs.
+- Some best practices.
+- Calculated Attributes.
+- JPA Auditing.
+- Hibernate Soft Deletes.
+- Hibernate Validators - Custom Validator.
+- JPA Specifications.
+- Spring boot Exception Handling.
+- Spring boot Internalization.
+- Logging in spring boot.
+- Custom Logging with Logback.
+- Logging with Log4j2.
