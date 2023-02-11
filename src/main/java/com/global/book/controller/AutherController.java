@@ -26,6 +26,11 @@ public class AutherController {
         return ResponseEntity.ok(autherService.findById(id));
     }
 
+    @GetMapping("/{email}")
+    public ResponseEntity<?> findByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(autherService.findByEmail(email));
+    }
+
     @GetMapping()
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(autherService.findAll());

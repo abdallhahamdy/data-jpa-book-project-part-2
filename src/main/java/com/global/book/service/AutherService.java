@@ -9,10 +9,12 @@ import com.global.book.repository.AutherSpec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class AutherService extends BaseService<Auther, Long> {
@@ -26,11 +28,11 @@ public class AutherService extends BaseService<Auther, Long> {
     public Auther insert(Auther entity) {
 
         if (!entity.getEmail().isEmpty() && entity.getEmail() != null) {
-            Optional<Auther> auther = findByEmail(entity.getEmail());
+            CompletableFuture<Auther> auther = findByEmail(entity.getEmail());
 
             log.info("author name is {} and email is {} ", entity.getName(), entity.getEmail());
 
-            if (auther.isPresent()) {
+            if (auther.isDone()) {
                 log.error("This email already found with another auther ");
                 throw new DuplicateRecordException("This email already found with another auther ");
             }
@@ -56,9 +58,10 @@ public class AutherService extends BaseService<Auther, Long> {
 
     }
 
-    public Optional<Auther> findByEmail(String email) {
+    @Async(value = "threadPoolTaskExecutor")
+    public CompletableFuture<Auther> findByEmail(String email) {
 
-        return autherRepo.findByEmail(email);
+        return CompletableFuture.completedFuture(autherRepo.findByEmail(email).get());
     }
 
 
