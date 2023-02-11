@@ -15,7 +15,7 @@ public class PriceScheduled {
 
     Logger log = LoggerFactory.getLogger(PriceScheduled.class);
 
-    @Scheduled( cron = "${interval-in-cron}")
+    @Scheduled( fixedRate = 200000)
     @SchedulerLock(name = "bookComputePrice")
     @Async
     public void computePrice() throws InterruptedException {
@@ -24,7 +24,7 @@ public class PriceScheduled {
         log.info("compute price >. " + LocalDateTime.now());
     }
 
-    @Scheduled( cron = "${interval-in-cron}")
+    @Scheduled( fixedRate = 200000)
     @SchedulerLock(name = "bookComputeDiscount")
     @Async
     public void computeDiscount() throws InterruptedException {
