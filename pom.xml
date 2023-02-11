@@ -66,6 +66,13 @@
 			<artifactId>shedlock-provider-jdbc-template</artifactId>
 			<version>4.27.0</version>
 		</dependency>
+
+		<!-- flyway for DB Migration  -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
