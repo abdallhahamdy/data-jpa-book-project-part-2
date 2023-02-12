@@ -37,6 +37,8 @@ public class Auther extends BaseEntity<Long> {
     @OneToMany(mappedBy = "auther" , cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
 
+    private String imagePath;
+
     public void addBook(Book book) {
         books.add(book);
     }
@@ -83,5 +85,13 @@ public class Auther extends BaseEntity<Long> {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
